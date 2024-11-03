@@ -11,7 +11,11 @@ public class DiseaseHandler {
     // Helper function that sets default values to env vars that are not configured
     private static int getEnvVarOrDefault(String envVar, int defaultValue) {
         String value = System.getenv(envVar);
-        return (value != null) ? Integer.parseInt(value) : defaultValue;
+        if (value == null || value.isEmpty()) {
+            logger.log(Level.WARNING,"Environment variable \"" + envVar + "\" not set, using default value: " + defaultValue);
+            return defaultValue;
+        }
+        return Integer.parseInt(value);
     }
 
     private static final int K = getEnvVarOrDefault("MAX_NEW_CASES", 10);         // Max number of new cases
