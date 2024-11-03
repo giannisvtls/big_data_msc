@@ -2,13 +2,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Main {
-    private static final Logger logger = Logger.getLogger(DiseaseSimulation.class.getName());
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
-        DiseaseSimulation simulation = new DiseaseSimulation();
-        Thread diseaseThread = new Thread(simulation.new Disease());
-        Thread hospitalThread = new Thread(simulation.new Hospital());
+        DiseaseHandler diseaseHandler = new DiseaseHandler();
 
+        // Create a new thread instance for each service
+        Thread diseaseThread = new Thread(diseaseHandler.new Disease());
+        Thread hospitalThread = new Thread(diseaseHandler.new Hospital());
+
+        // Start the threads
         diseaseThread.start();
         hospitalThread.start();
 
@@ -19,7 +22,7 @@ public class Main {
             logger.log(Level.SEVERE, "Error joining the threads", e);
         }
 
-        System.out.println("Total recovered cases: " + simulation.getRecoveredCases());
-        System.out.println("Total rejected cases: " + simulation.getCasesRejected());
+        logger.log(Level.INFO,"Total recovered cases: " + diseaseHandler.getRecoveredCases());
+        logger.log(Level.INFO,"Total rejected cases: " + diseaseHandler.getCasesRejected());
     }
 }
