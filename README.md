@@ -55,11 +55,10 @@ This project simulates a simple distributed storage system with three main compo
 
 #### Functionality 
 
-- **Randomized Data Operations**: Both `ProducerClient` and `ConsumerClient` generate random data amounts to add or remove from the storage server, simulating dynamic data flow in a distributed system.
-- **Port-based Communication**: Producers and consumers connect to random ports, allowing multiple storage servers to handle requests concurrently. 
-
--  **Thread Safety**: The `StorageServer` uses synchronized methods to prevent data inconsistencies when handling multiple requests. This ensures that concurrent operations do not violate storage limits. 
-- **Error Handling**: If a producer’s "ADD" operation would exceed maximum storage, or if a consumer’s "REMOVE" operation would result in storage below the minimum, the request is denied with an appropriate message.
+- Both `ProducerClient` and `ConsumerClient` generate random data amounts to add or remove from the storage server, simulating dynamic data flow in a distributed system.
+- Producers and consumers connect to random ports, allowing multiple storage servers to handle requests concurrently. 
+- The `StorageServer` uses synchronized methods to prevent data inconsistencies when handling multiple requests. This ensures that concurrent operations do not violate storage limits. 
+- If a producer’s "ADD" operation would exceed maximum storage, or if a consumer’s "REMOVE" operation would result in storage below the minimum, the request is denied with an appropriate message.
 
 ### How to run:
 1. Clone the project
