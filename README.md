@@ -18,10 +18,6 @@ This program simulates a healthcare scenario where two concurrent threads manage
 
 The **Disease** thread generates new cases at random intervals, constrained by the maximum number of cases (`MAX_NEW_CASES`). If ICU capacity (`MAX_ICU_CAPACITY`) is exceeded, the overflow cases are rejected. The **Hospital** thread recovers patients at random intervals, freeing up beds as specified by `MAX_RECOVERIES`. The total recovered and rejected cases are logged for final reporting.
 
-#### Synchronization and Configuration
-
-A `ReentrantLock` and `Condition` are used to coordinate access to shared variables, ensuring thread-safe updates on ICU bed occupancy. Both the `Disease` and `Hospital` threads are configured to sleep between iterations, emulating real-time case management intervals. Configurable parameters such as ICU capacity, iteration count, and thread sleep intervals can be set via environment variables or default values.
-
 ### How to run:
 1. Clone the project
 2. Optionally set the environment variables for the following values
