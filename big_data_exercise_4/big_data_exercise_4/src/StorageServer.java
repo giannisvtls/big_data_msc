@@ -24,8 +24,11 @@ public class StorageServer {
         new Thread(new ClientHandler(consumerPort, "Consumer")).start();
     }
 
+    // The synchronized keyword on a method ensures that only one thread at a time can execute that method
+    // Could be replaced by a lock at the start of the function, wrap this in a try/catch/finally block and unlock the thread on the 'finally' block
     private synchronized String handleRequest(String command, int amount) {
         if (command.equalsIgnoreCase("ADD")) {
+            // Handling cases where the operation would exceed the available storage
             if (storage + amount > MAX_STORAGE) {
                 return "Storage limit exceeded. Operation not applied. Current storage: " + storage;
             } else {
@@ -33,14 +36,15 @@ public class StorageServer {
                 return "Added " + amount + " to storage. Current storage: " + storage;
             }
         } else if (command.equalsIgnoreCase("REMOVE")) {
+            // Handling cases where the operation would result in negative storage
             if (storage - amount < MIN_STORAGE) {
-                return "Insufficient storage. Operation not applied. Current storage: " + storage;
+                return "Not enough storage. Current storage: " + storage;
             } else {
                 storage -= amount;
                 return "Removed " + amount + " from storage. Current storage: " + storage;
             }
         }
-        return "Invalid command.";
+        return "Invalid";
     }
 
     private class ClientHandler implements Runnable {
@@ -57,12 +61,13 @@ public class StorageServer {
             try (ServerSocket serverSocket = new ServerSocket(port)) {
                 System.out.println(clientType + " Server started on port " + port + " with initial storage: " + storage);
 
-                while (true) {
+                while (!Thread.currentThread().isInterrupted()) {
                     Socket clientSocket = serverSocket.accept();
                     new Thread(new ClientProcessor(clientSocket)).start();
                 }
             } catch (IOException e) {
                 logger.log(Level.SEVERE, "Could not listen on port: " + port);
+                Thread.currentThread().interrupt();
             }
         }
     }

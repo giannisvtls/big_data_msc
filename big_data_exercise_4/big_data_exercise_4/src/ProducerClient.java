@@ -12,8 +12,15 @@ public class ProducerClient {
         String serverHostname = "127.0.0.1";
         Random random = new Random();
 
+        // Infinite loop to keep the connection open
+        // Can also use `while(true)` with `TimeUnit.SECONDS.sleep(random.nextInt(10) + 1);` to delay for 1-10 seconds
+        // Using the current thread to gracefully shut down the while loop in case of an exception
         while (!Thread.currentThread().isInterrupted()) {
+
+            // Pick one of the ports at random
             int port = PRODUCER_PORTS[random.nextInt(PRODUCER_PORTS.length)];
+
+            // Using a try-with-resources block to ensure that resources are automatically closed after use
             try (Socket socket = new Socket(serverHostname, port);
                  PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                  BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
@@ -26,10 +33,10 @@ public class ProducerClient {
                 System.out.println("Server response: " + response);
 
                 try {
-                    Thread.sleep((random.nextInt(10) + 1) * 1000);  // Random delay between 1-10 seconds
+                    Thread.sleep((random.nextInt(10) + 1) * 1000);  // Delay between 1-10 seconds
                 } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();  // Restore the interrupted status
-                    break;  // Exit the loop
+                    Thread.currentThread().interrupt();
+                    break;
                 }
             } catch (IOException e) {
                 logger.log(Level.SEVERE, "Producer error: ", e);
