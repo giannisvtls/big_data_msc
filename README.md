@@ -33,7 +33,16 @@ The program divides the work among multiple threads, where each thread is respon
 | ROWS | 1024 |
 |COLUMNS|4000|
 
-4. Run `MatrixVectorMultiplicationHandler.java`.
+3. Run `MatrixVectorMultiplicationHandler.java`.
+
+### Time Measurements for 1024 rows and 4000 columns
+
+| NUMBER OF THREADS | TIME IN MILLISECONDS |
+|--|--|
+| 1 | 10.1702 |
+| 2 | 1.4055 |
+| 3 | 1.215 |
+| 4 | 1.0919 |
 
 ## Exercise 2
 ### Prerequisites
