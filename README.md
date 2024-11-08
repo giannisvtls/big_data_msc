@@ -97,7 +97,7 @@ This program implements a basic server-client architecture for managing a hash t
 
 ### How to run:
 1. Clone the project.
-2. Optionally, set the environment variable for the port
+2. Optionally, set the environment variable for the port in **both** `HashServer` and `HashClient`
 | ENV VAR | DEFAULT VALUE |
 |--|--|
 | SERVER_PORT | 9003 |
