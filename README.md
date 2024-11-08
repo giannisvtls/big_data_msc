@@ -13,13 +13,13 @@ A repository created to serve as a collection of exercises written in Java for t
 
 #### Overview
 
-This program performs matrix-vector multiplication in parallel using multiple threads, enabling efficient computation for large matrices. The matrix \( A \) and vector \( v \) are generated with random integer values between 0 and 10, and the number of threads can be specified for performance testing.
+This program performs matrix-vector multiplication in parallel using multiple threads. The matrix \( A \) and vector \( v \) are generated with random integer values between 0 and 10.
 
 The program divides the work among multiple threads, where each thread is responsible for computing a specific subset of rows in the matrix \( A \). Each thread multiplies its assigned rows by the vector \( v \) and stores the results in a shared result array. The number of threads can be varied to observe the impact on computation time.
 
 #### Functionality
 
-- The program ensures that both the matrix size (`n`) and the number of threads are powers of 2 for optimal distribution of workload.
+- The program ensures that both the matrix size (`n`) and the number of threads are powers of 2.
 - The program initializes a matrix \( A \) with dimensions \( n \times m \) and a vector \( v \) with dimensions \( m \times 1 \), where values are randomly generated between 0 and 10.
 - The program distributes the rows of the matrix across the specified number of threads. Each thread multiplies its assigned rows by the vector and stores the result in the corresponding entries of the result array.
 - Execution time is measured for each specified number of threads, allowing users to observe the efficiency and impact of multithreading on matrix-vector multiplication.
