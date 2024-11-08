@@ -103,7 +103,7 @@ This program implements a basic server-client architecture for managing a hash t
     - **1,key,value**: Insert a key-value pair.
     - **2,key**: Delete a key-value pair.
     - **3,key**: Search for the value associated with a key.
-    - **0,0**: Exit the client program.
+    - **0**: Exit the client program.
   - Receives and displays responses from the server, indicating the success of each operation or showing retrieved values for search operations.
 
 ### How to run:
