@@ -3,6 +3,36 @@
 
 A repository created to serve as a collection of exercises written in Java for the Big Data Analysis class for the MsC Web and Data Science AUTH
 
+## Exercise 1
+
+### Prerequisites
+
+- Java >= 8, tested with Java 17
+
+### Description
+
+#### Overview
+
+This program performs matrix-vector multiplication in parallel using multiple threads, enabling efficient computation for large matrices. The matrix \( A \) and vector \( v \) are generated with random integer values between 0 and 10, and the number of threads can be specified for performance testing.
+
+The program divides the work among multiple threads, where each thread is responsible for computing a specific subset of rows in the matrix \( A \). Each thread multiplies its assigned rows by the vector \( v \) and stores the results in a shared result array. The number of threads can be varied to observe the impact on computation time.
+
+#### Functionality
+
+- The program ensures that both the matrix size (`n`) and the number of threads are powers of 2 for optimal distribution of workload.
+- The program initializes a matrix \( A \) with dimensions \( n \times m \) and a vector \( v \) with dimensions \( m \times 1 \), where values are randomly generated between 0 and 10.
+- The program distributes the rows of the matrix across the specified number of threads. Each thread multiplies its assigned rows by the vector and stores the result in the corresponding entries of the result array.
+- Execution time is measured for each specified number of threads, allowing users to observe the efficiency and impact of multithreading on matrix-vector multiplication.
+
+### How to run:
+1. Clone the project.
+2. Optionally, modify the matrix dimensions by configuring the following environment variables.
+| ENV VAR | DEFAULT VALUE |
+|--|--|
+| ROWS | 1024 |
+|COLUMNS|4000|
+4. Run `MatrixVectorMultiplicationHandler.java`.
+
 ## Exercise 2
 ### Prerequisites
 
@@ -32,6 +62,48 @@ The **Disease** thread generates new cases at random intervals, constrained by t
 |MAX_RECOVERIES|5|
 
 3. Run `Main.java`
+
+## Exercise 3
+
+### Prerequisites
+
+- Java >= 8, tested with Java 17
+
+### Description
+
+#### Overview
+
+This program implements a basic server-client architecture for managing a hash table over a network connection. The **HashServer** acts as a centralized server to store key-value pairs in a hash table, while the **HashClient** allows clients to connect to the server and perform various operations on the hash table, including insertion, deletion, and search. Communication between the client and server occurs over TCP sockets, where each command is transmitted as a comma-separated string.
+
+#### Functionality
+
+- **HashServer**:
+  - Initializes a hash table with a default size of \(2^{20}\) and listens on a specified port for client connections.
+  - Handles the following operations from connected clients:
+    - **Insert (1,key,value)**: Inserts or updates a value associated with a key.
+    - **Delete (2,key)**: Removes the specified key and associated value from the hash table.
+    - **Search (3,key)**: Retrieves the value associated with the specified key.
+  - The server continuously listens for new client connections, and each client is handled sequentially.
+  - The server outputs messages about connected clients and logs errors if a connection issue occurs.
+
+- **HashClient**:
+  - Connects to the **HashServer** using a specified IP address and port.
+  - Provides a command-line interface where users can issue commands to insert, delete, or search for values in the hash table:
+    - **1,key,value**: Insert a key-value pair.
+    - **2,key**: Delete a key-value pair.
+    - **3,key**: Search for the value associated with a key.
+    - **0,0**: Exit the client program.
+  - Receives and displays responses from the server, indicating the success of each operation or showing retrieved values for search operations.
+
+### How to run:
+1. Clone the project.
+2. Optionally, set the environment variable for the port
+| ENV VAR | DEFAULT VALUE |
+|--|--|
+| SERVER_PORT | 9003 |
+
+4. Run `HashServer.java`
+
 
 ## Exercise 4
 ### Prerequisites
