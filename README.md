@@ -27,10 +27,12 @@ The program divides the work among multiple threads, where each thread is respon
 ### How to run:
 1. Clone the project.
 2. Optionally, modify the matrix dimensions by configuring the following environment variables.
+ 
 | ENV VAR | DEFAULT VALUE |
 |--|--|
 | ROWS | 1024 |
 |COLUMNS|4000|
+
 4. Run `MatrixVectorMultiplicationHandler.java`.
 
 ## Exercise 2
@@ -98,6 +100,7 @@ This program implements a basic server-client architecture for managing a hash t
 ### How to run:
 1. Clone the project.
 2. Optionally, set the environment variable for the port in **both** `HashServer` and `HashClient`
+
 | ENV VAR | DEFAULT VALUE |
 |--|--|
 | SERVER_PORT | 9003 |
