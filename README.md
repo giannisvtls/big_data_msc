@@ -41,8 +41,8 @@ The program divides the work among multiple threads, where each thread is respon
 |--|--|
 | 1 | 10.1702 |
 | 2 | 1.4055 |
-| 3 | 1.215 |
-| 4 | 1.0919 |
+| 4 | 1.215 |
+| 8 | 1.0919 |
 
 ## Exercise 2
 ### Prerequisites
