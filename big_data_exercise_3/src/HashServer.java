@@ -1,16 +1,28 @@
 import java.net.*;
 import java.io.*;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class HashServer {
-    private final int port;
+    private static final Logger logger = Logger.getLogger(DiseaseHandler.class.getName());
+    // Helper function that sets default values to env vars that are not configured
+    private static int getEnvVarOrDefault() {
+        String value = System.getenv("SERVER_PORT");
+        if (value == null || value.isEmpty()) {
+            logger.log(Level.WARNING,"Environment variable \"" + "SERVER_PORT" + "\" not set, using default value: " + 9003);
+            return 9003;
+        }
+        return Integer.parseInt(value);
+    }
+
+    private static final int port = getEnvVarOrDefault();         // Port of the server
     private final HashMap<Integer, Integer> hashTable;
     //private static final int TABLE_SIZE = Math.pow(2, 20);
     private static final int TABLE_SIZE = 1 << 20;
 
-    public HashServer(int port) {
-        this.port = port;
+    public HashServer() {
         this.hashTable = new HashMap<>(TABLE_SIZE);
     }
 
@@ -67,10 +79,6 @@ public class HashServer {
     }
 
     public static void main(String[] args) {
-        int port = 9003; // random available port
-        if (args.length > 0) {
-            port = Integer.parseInt(args[0]);
-        }
-        new HashServer(port).start();
+        new HashServer().start();
     }
 }

@@ -1,14 +1,26 @@
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HashClient {
-    private final String serverAddress;
-    private final int port;
+    private static final Logger logger = Logger.getLogger(DiseaseHandler.class.getName());
+    // Helper function that sets default values to env vars that are not configured
+    private static int getEnvVarOrDefault() {
+        String value = System.getenv("SERVER_PORT");
+        if (value == null || value.isEmpty()) {
+            logger.log(Level.WARNING,"Environment variable \"" + "SERVER_PORT" + "\" not set, using default value: " + 9003);
+            return 9003;
+        }
+        return Integer.parseInt(value);
+    }
 
-    public HashClient(String serverAddress, int port) {
+    private static final int port = getEnvVarOrDefault();
+    private final String serverAddress;
+
+    public HashClient(String serverAddress) {
         this.serverAddress = serverAddress;
-        this.port = port;
     }
 
     public void start() {
@@ -65,15 +77,6 @@ public class HashClient {
 
     public static void main(String[] args) {
         String serverAddress = "127.0.0.1"; // Default to localhost
-        int port = 9003; // Default port
-
-        if (args.length > 0) {
-            serverAddress = args[0];
-        }
-        if (args.length > 1) {
-            port = Integer.parseInt(args[1]);
-        }
-
-        new HashClient(serverAddress, port).start();
+        new HashClient(serverAddress).start();
     }
 }
