@@ -35,7 +35,7 @@ public class HashClient {
             System.out.println("1,key,value - Insert");
             System.out.println("2,key - Delete");
             System.out.println("3,key - Search");
-            System.out.println("0,0 - Exit");
+            System.out.println("0 - Exit");
             System.out.println("       ");
 
             while (true) {

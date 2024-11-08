@@ -19,7 +19,6 @@ public class HashServer {
 
     private static final int port = getEnvVarOrDefault();         // Port of the server
     private final HashMap<Integer, Integer> hashTable;
-    //private static final int TABLE_SIZE = Math.pow(2, 20);
     private static final int TABLE_SIZE = 1 << 20;
 
     public HashServer() {
@@ -52,12 +51,13 @@ public class HashServer {
         while ((inputLine = in.readLine()) != null) {
             String[] parts = inputLine.split(",");
             int operation = Integer.parseInt(parts[0]);
-            int key = Integer.parseInt(parts[1]);
 
             if (operation == 0) {
                 System.out.println("Client requested to Exit");
                 break;
             }
+
+            int key = Integer.parseInt(parts[1]);
             switch (operation) {
                 case 1:
                     int value = Integer.parseInt(parts[2]);
