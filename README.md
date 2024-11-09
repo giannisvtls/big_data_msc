@@ -6,8 +6,9 @@ Used IntelliJ as an IDE with Intellisense and Hippie Code completion included in
 
 ## Created By 
 
-NAME: ΙΩΑΝΝΗΣ ΒΙΤΑΛΗΣ, ΑΕΜ: 207
-NAME: Γεώργιος Πάρναλης-Παλαντζίδης, ΑΕΜ: 189
+Ον/μο: ΙΩΑΝΝΗΣ ΒΙΤΑΛΗΣ, ΑΕΜ: 207
+
+Ον/μο: Γεώργιος Πάρναλης-Παλαντζίδης, ΑΕΜ: 189
 
 ## Exercise 1
 
