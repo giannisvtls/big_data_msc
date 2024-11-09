@@ -4,7 +4,7 @@
 A repository created to serve as a collection of exercises written in Java for the Big Data Analysis class for the MsC Web and Data Science AUTH
 Used IntelliJ as an IDE with Intellisense and Hippie Code completion included in the IntelliJ IDE
 
-## Date 09/11/2024
+### Date 09/11/2024
 
 ## Created By 
 
