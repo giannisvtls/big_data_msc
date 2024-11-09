@@ -2,6 +2,7 @@
 # Big Data exercises!
 
 A repository created to serve as a collection of exercises written in Java for the Big Data Analysis class for the MsC Web and Data Science AUTH
+Used IntelliJ as an IDE with Intellisense and Hippie Code completion included in the IntelliJ IDE
 
 ## Exercise 1
 
