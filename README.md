@@ -20,7 +20,7 @@ The program divides the work among multiple threads, where each thread is respon
 #### Functionality
 
 - The program ensures that both the matrix size (`n`) and the number of threads are powers of 2.
-- The program initializes a matrix \( A \) with dimensions \( n \times m \) and a vector \( v \) with dimensions \( m \times 1 \), where values are randomly generated between 0 and 10.
+- The program initializes a matrix \( A \) with dimensions \( n * m \) and a vector \( v \) with dimensions \( m * 1 \), where values are randomly generated between 0 and 10.
 - The program distributes the rows of the matrix across the specified number of threads. Each thread multiplies its assigned rows by the vector and stores the result in the corresponding entries of the result array.
 - Execution time is measured for each specified number of threads, allowing user to observe the efficiency and impact of multithreading on this matrix-vector multiplication approach.
 
