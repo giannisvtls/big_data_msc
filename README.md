@@ -99,7 +99,7 @@ For exercise 3, we implement a server and a client, to manage a hashtable using 
     - **(1,key,value)**: Insert a key-value pair.
     - **(2,key)**: Delete a key-value pair.
     - **(3,key)**: Search for the value associated with a key.
-    - **(0,0)**: Disconnect from the server.
+    - **(0)**: Disconnect from the server.
   - Receives and displays responses from the server, indicating the success of each operation or showing retrieved values for search operations.
 
  #### Example run
