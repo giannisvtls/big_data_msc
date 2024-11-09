@@ -42,7 +42,18 @@ The program divides the work among multiple threads, where each thread is respon
 
 3. Run `MatrixVectorMultiplicationHandler.java`.
 
-### Time Measurements for 1024 rows and 4000 columns
+### Time Measurements
+
+#### For 512 rows and 3000 columns
+
+| NUMBER OF THREADS | TIME IN MILLISECONDS |
+|--|--|
+| 1 | 6.6201 |
+| 2 | 6.0125 |
+| 4 | 0.844 |
+| 8 | 0.9727 |
+
+#### For 1024 rows and 4000 columns
 
 | NUMBER OF THREADS | TIME IN MILLISECONDS |
 |--|--|
@@ -50,6 +61,8 @@ The program divides the work among multiple threads, where each thread is respon
 | 2 | 1.4055 |
 | 4 | 1.215 |
 | 8 | 1.0919 |
+
+#### We notice that larger matrices get more value from the threads, for smaller matrices the overhead of creating more threads results in worse results
 
 ## Exercise 2
 ### Prerequisites
