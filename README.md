@@ -8,7 +8,7 @@ Used IntelliJ as an IDE with Intellisense and Hippie Code completion included in
 
 ## Created By 
 
-Ον/μο: ΙΩΑΝΝΗΣ ΒΙΤΑΛΗΣ, ΑΕΜ: 207
+Ον/μο: Ιωάννης Βιτάλης, ΑΕΜ: 207
 
 Ον/μο: Γεώργιος Πάρναλης-Παλαντζίδης, ΑΕΜ: 189
 
