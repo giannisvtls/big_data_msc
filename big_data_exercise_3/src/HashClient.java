@@ -70,7 +70,7 @@ public class HashClient {
             System.err.println("Don't know about host: " + serverAddress);
             System.exit(1);
         } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to:" + serverAddress);
+            System.err.println("Couldn't get I/O for the connection to: " + serverAddress + ":" + port);
             System.exit(1);
         }
     }

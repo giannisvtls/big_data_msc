@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 
 public class HashServer {
-    private static final Logger logger = Logger.getLogger(DiseaseHandler.class.getName());
+    private static final Logger logger = Logger.getLogger(HashServer.class.getName());
     // Helper function that sets default values to env vars that are not configured
     private static int getEnvVarOrDefault() {
         String value = System.getenv("SERVER_PORT");
@@ -17,7 +17,7 @@ public class HashServer {
         return Integer.parseInt(value);
     }
 
-    private static final int port = getEnvVarOrDefault();         // Port of the server
+    private static final int port = getEnvVarOrDefault();
     private final HashMap<Integer, Integer> hashTable;
     private static final int TABLE_SIZE = 1 << 20;
 
