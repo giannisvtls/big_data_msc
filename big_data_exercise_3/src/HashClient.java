@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HashClient {
-    private static final Logger logger = Logger.getLogger(DiseaseHandler.class.getName());
+    private static final Logger logger = Logger.getLogger(CasesHandler.class.getName());
     // Helper function that sets default values to env vars that are not configured
     private static int getEnvVarOrDefault() {
         String value = System.getenv("SERVER_PORT");
@@ -76,7 +76,7 @@ public class HashClient {
     }
 
     public static void main(String[] args) {
-        String serverAddress = "127.0.0.1"; // Default to localhost
+        String serverAddress = "127.0.0.1";
         new HashClient(serverAddress).start();
     }
 }

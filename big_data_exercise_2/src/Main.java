@@ -1,28 +1,44 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class Main {
+public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
-        DiseaseHandler diseaseHandler = new DiseaseHandler();
+        CasesHandler casesHandler = new CasesHandler();
 
-        // Create a new thread instance for each service
-        Thread diseaseThread = new Thread(diseaseHandler.new Disease());
-        Thread hospitalThread = new Thread(diseaseHandler.new Hospital());
+        // Create 1 thread to generate diseases
+        Thread diseaseThread = new Thread(new Disease(casesHandler));
 
-        // Start the threads
+        // Create and start multiple Hospital threads
+        List<Thread> hospitalThreads = new ArrayList<>();
+        var hospitals = casesHandler.getHospitals();
+        for (Hospital hospital : hospitals) {
+            var hospitalThread = new Thread(hospital);
+            hospitalThreads.add(hospitalThread);
+        }
+
+        // Start the disease thread that will generate cases in random intervals
         diseaseThread.start();
-        hospitalThread.start();
+
+        // Start one or multiple hospital threads, each one will recover cases in random intervals
+        for (Thread hospitalThread : hospitalThreads) {
+            hospitalThread.start();
+        }
 
         try {
             diseaseThread.join();
-            hospitalThread.join();
+            for (Thread hospitalThread : hospitalThreads) {
+                hospitalThread.join();
+            }
         } catch (InterruptedException e) {
-            logger.log(Level.SEVERE, "Error joining the threads", e);
+            logger.log(Level.SEVERE, "Thread interrupted", e);
         }
 
-        logger.log(Level.INFO,"Total recovered cases: " + diseaseHandler.getRecoveredCases());
-        logger.log(Level.INFO,"Total rejected cases: " + diseaseHandler.getCasesRejected());
+        // Final results
+        logger.log(Level.INFO, "Total recovered cases: " + casesHandler.getRecoveredCases());
+        logger.log(Level.INFO, "Total rejected cases: " + casesHandler.getRejectedCases());
     }
 }
