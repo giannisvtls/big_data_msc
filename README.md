@@ -75,26 +75,32 @@ The program divides the work among multiple threads, where each thread is respon
 
 #### Overview
 
-This program simulates a healthcare scenario where two concurrent threads manage the flow of ICU cases in a hospital environment. It consists of two main components: a **Disease** thread that generates new ICU cases and a **Hospital** thread that recovers cases and frees up ICU beds. The threads interact with shared resources (ICU bed occupancy) using a locking mechanism to avoid data inconsistencies.
+This program simulates an ICU management system within a hospital environment using concurrent threads. Two types of threads handle ICU admissions and patient recoveries: **Disease** threads, which simulate the influx of new ICU cases, and **Hospital** threads, which manage patient recovery and free up ICU beds. These threads work with shared resources, ensuring data consistency through locks.
 
 #### Functionality
 
-The **Disease** thread generates new cases at random intervals, constrained by the maximum number of cases (`MAX_NEW_CASES`). If ICU capacity (`MAX_ICU_CAPACITY`) is exceeded, the overflow cases are rejected. The **Hospital** thread recovers patients at random intervals, freeing up beds as specified by `MAX_RECOVERIES`. The total recovered and rejected cases are logged for final reporting.
+- **Disease Thread**: Generates new ICU cases at random intervals, constrained by the maximum allowed (`MAX_NEW_CASES`). If ICU capacity (`MAX_ICU_CAPACITY`) is exceeded, additional cases are logged as rejected due to overflow.
+- **Hospital Threads**: Multiple threads handle patient recovery independently, freeing up ICU beds at random intervals as specified by the `MAX_RECOVERIES` limit.
+- **CasesHandler**: Manages shared resources, tracks ICU bed usage, and reports the total number of cases recovered and rejected once the simulation completes.
 
-### How to run:
-1. Clone the project
-2. Optionally set the environment variables for the following values
+#### How to Run
 
-| ENV VAR | DEFAULT VALUE |
-|--|--|
-| DISEASE_THREAD_SLEEP_TIME_MS | 3000 |
-|HOSPITAL_THREAD_SLEEP_TIME_MS|5000|
-|ITERATIONS|20|
-|MAX_ICU_CAPACITY|20|
-|MAX_NEW_CASES|10|
-|MAX_RECOVERIES|5|
+1. Clone the repository containing the code.
+2. Optionally adjust the following environment variables.
+   
+   **Note: MAX_ICU_CAPCITY** refers to the max icu capacity **for each** hospital
 
-3. Run `Main.java`
+   | Environment Variable              | Default Value |
+   |-----------------------------------|---------------|
+   | `DISEASE_THREAD_SLEEP_TIME_MS`    | 1000         |
+   | `HOSPITAL_THREAD_SLEEP_TIME_MS`   | 5000         |
+   | `ITERATIONS`                      | 20           |
+   | `MAX_ICU_CAPACITY`                | 20           |
+   | `MAX_NEW_CASES`                   | 10           |
+   | `MAX_RECOVERIES`                  | 5            |
+   | `NUM_HOSPITALS`                   | 3            |
+
+4. Run `Main.java`.
 
 ## Exercise 3
 
