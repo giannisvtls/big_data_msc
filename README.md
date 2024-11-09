@@ -15,14 +15,14 @@ A repository created to serve as a collection of exercises written in Java for t
 
 This program performs matrix-vector multiplication in parallel using multiple threads. The matrix \( A \) and vector \( v \) are generated with random integer values between 0 and 10.
 
-The program divides the work among multiple threads, where each thread is responsible for computing a specific subset of rows in the matrix \( A \). Each thread multiplies its assigned rows by the vector \( v \) and stores the results in a shared result array. The number of threads can be varied to observe the impact on computation time.
+The program divides the work among multiple threads, where each thread is responsible for computing a specific subset of rows in the matrix \( A \). Each thread multiplies its assigned rows by the vector \( v \) and stores the results in a shared result array. The number of threads can be varied to observe the impact on computation time. For example, for a matrix A with dimensions (256 x 100) running with 4 threads, each thread is calculating the multiplication of 256/4 = 64 lines of the initial matrix A. So each thread is calculating the multiplication of a (64 x 100) matrix with a (100 x 1) vector. In the end, the final result is calculated.
 
 #### Functionality
 
 - The program ensures that both the matrix size (`n`) and the number of threads are powers of 2.
 - The program initializes a matrix \( A \) with dimensions \( n \times m \) and a vector \( v \) with dimensions \( m \times 1 \), where values are randomly generated between 0 and 10.
 - The program distributes the rows of the matrix across the specified number of threads. Each thread multiplies its assigned rows by the vector and stores the result in the corresponding entries of the result array.
-- Execution time is measured for each specified number of threads, allowing users to observe the efficiency and impact of multithreading on matrix-vector multiplication.
+- Execution time is measured for each specified number of threads, allowing user to observe the efficiency and impact of multithreading on this matrix-vector multiplication approach.
 
 ### How to run:
 1. Clone the project.
@@ -84,27 +84,52 @@ The **Disease** thread generates new cases at random intervals, constrained by t
 
 #### Overview
 
-This program implements a basic server-client architecture for managing a hash table over a network connection. The **HashServer** acts as a centralized server to store key-value pairs in a hash table, while the **HashClient** allows clients to connect to the server and perform various operations on the hash table, including insertion, deletion, and search. Communication between the client and server occurs over TCP sockets, where each command is transmitted as a comma-separated string.
+For exercise 3, we implement a server and a client, to manage a hashtable using a network connection. The **HashServer** acts as the server to store key-value pairs in a hash table, while the **HashClient** allows clients to connect to the server and perform various operations on the hash table, including insertion, deletion, and search. Communication between the client and server occurs over TCP sockets, where each command is transmitted as a comma-separated string.
 
 #### Functionality
 
 - **HashServer**:
-  - Initializes a hash table with a default size of \(2^{20}\) and listens on a specified port for client connections.
-  - Handles the following operations from connected clients:
-    - **Insert (1,key,value)**: Inserts or updates a value associated with a key.
-    - **Delete (2,key)**: Removes the specified key and associated value from the hash table.
-    - **Search (3,key)**: Retrieves the value associated with the specified key.
+  - Initializes a hash table with a default size of \(2^{20}\) and listens on a specified port for client connections. As a default port, port 9000 is used.
   - The server continuously listens for new client connections, and each client is handled sequentially.
   - The server outputs messages about connected clients and logs errors if a connection issue occurs.
 
 - **HashClient**:
   - Connects to the **HashServer** using a specified IP address and port.
   - Provides a command-line interface where users can issue commands to insert, delete, or search for values in the hash table:
-    - **1,key,value**: Insert a key-value pair.
-    - **2,key**: Delete a key-value pair.
-    - **3,key**: Search for the value associated with a key.
-    - **0**: Exit the client program.
+    - **(1,key,value)**: Insert a key-value pair.
+    - **(2,key)**: Delete a key-value pair.
+    - **(3,key)**: Search for the value associated with a key.
+    - **(0,0)**: Disconnect from the server.
   - Receives and displays responses from the server, indicating the success of each operation or showing retrieved values for search operations.
+
+ #### Example run
+  
+First, we start the Server:
+
+![Capture1](https://github.com/user-attachments/assets/fe947243-5951-43b7-9324-4580d821a9ba)
+
+
+
+Then, we can connect the client to the Server, where we are presented with the list of the available commands:
+
+![Capture2](https://github.com/user-attachments/assets/56aacc56-9ca9-4535-ae69-7f2c221feba6)
+
+
+
+We can try some commands. First, we check the value in position 2, which, as expected, is still 0. Then we add the value 22 in position 10. We check if the value was correctly inserted, and then we delete the value.
+Finally, we can use exit command.
+
+![Capture3](https://github.com/user-attachments/assets/bc3f4942-4a4e-43d3-a224-28b230f055c1)
+
+
+
+After we disconnect, the Server announces the disconnect.
+
+![Capture4](https://github.com/user-attachments/assets/9193a7b7-c67d-4d36-bdbd-e5d2a521558c)
+
+
+
+The Server in its current form accepts only a single client connection. In order to have multiple clients connecting with the Server, we can use threads. More specifically, each client connection can be handled in a separate thread, and they can run concurrently.
 
 ### How to run:
 1. Clone the project.
@@ -115,6 +140,7 @@ This program implements a basic server-client architecture for managing a hash t
 | SERVER_PORT | 9003 |
 
 4. Run `HashServer.java`
+
 
 
 ## Exercise 4
