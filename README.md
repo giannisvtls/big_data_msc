@@ -75,11 +75,11 @@ The program divides the work among multiple threads, where each thread is respon
 
 #### Overview
 
-This program simulates an ICU management system within a hospital environment using concurrent threads. Two types of threads handle ICU admissions and patient recoveries: **Disease** threads, which simulate the influx of new ICU cases, and **Hospital** threads, which manage patient recovery and free up ICU beds. These threads work with shared resources, ensuring data consistency through locks.
+This program simulates an ICU management system within a hospital environment using concurrent threads. Two types of threads handle ICU admissions and patient recoveries: **Disease** threads, which simulate the influx of new ICU cases, and **Hospital** threads, which manage patient recovery and free up ICU beds. These threads work with shared resources.
 
 #### Functionality
 
-- **Disease Thread**: Generates new ICU cases at random intervals, constrained by the maximum allowed (`MAX_NEW_CASES`). If ICU capacity (`MAX_ICU_CAPACITY`) is exceeded, additional cases are logged as rejected due to overflow.
+- **Disease Thread**: Generates new ICU cases at random intervals, constrained by the maximum allowed (`MAX_NEW_CASES`). If ICU capacity (`MAX_ICU_CAPACITY`) is exceeded, additional cases are logged as rejected.
 - **Hospital Threads**: Multiple threads handle patient recovery independently, freeing up ICU beds at random intervals as specified by the `MAX_RECOVERIES` limit.
 - **CasesHandler**: Manages shared resources, tracks ICU bed usage, and reports the total number of cases recovered and rejected once the simulation completes.
 
@@ -189,7 +189,7 @@ This project simulates a simple distributed storage system with three main compo
 
 #### Functionality 
 
-- Both `ProducerClient` and `ConsumerClient` generate random data amounts to add or remove from the storage server, simulating dynamic data flow in a distributed system.
+- Both `ProducerClient` and `ConsumerClient` generate random data amounts to add or remove from the storage server.
 - Producers and consumers connect to random ports, allowing multiple storage servers to handle requests concurrently. 
 - The `StorageServer` uses synchronized methods to prevent data inconsistencies when handling multiple requests. This ensures that concurrent operations do not violate storage limits. 
 - If a producer’s "ADD" operation would exceed maximum storage, or if a consumer’s "REMOVE" operation would result in storage below the minimum, the request is denied with an appropriate message.
