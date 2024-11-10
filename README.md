@@ -64,7 +64,7 @@ The program divides the work among multiple threads, where each thread is respon
 | 4 | 1.215 |
 | 8 | 1.0919 |
 
-#### We notice that larger matrices get more value from the threads, for smaller matrices the overhead of creating more threads results in worse results
+#### As we can see, it is clear that when a matrix with lower dimensions is used, the overhead of creating more threads affects the computation time. With large enough matrix, we can get the benefit of threads, thus getting better results.
 
 ## Exercise 2
 ### Prerequisites
